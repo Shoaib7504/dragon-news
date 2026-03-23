@@ -17,13 +17,13 @@ const Home = () => {
                 <Header></Header>
             </section>
             <main className='w-11/12 gap-3 mx-auto grid grid-cols-12'>
-                <section className='Left-nav col-span-3'>
+                <section className='Left-nav col-span-3 sticky top-4 h-fit'>
                     <LeftAside></LeftAside>
                 </section>
                 <section className='col-span-6'>
                     <Outlet></Outlet>
                 </section>
-                <section className='Right-nav col-span-3'>
+                <section className='Right-nav col-span-3 sticky top-4 h-fit'>
                     <RightAside></RightAside>
                 </section>
             </main>

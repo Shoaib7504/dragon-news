@@ -10,6 +10,7 @@ const CategoryNews = () => {
     // FILTER THE NEWS DATA
     useEffect(() => {
         if (id == '0') {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setCategoryNews(data);
             return;
         } else if (id == '1') {
