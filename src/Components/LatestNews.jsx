@@ -11,6 +11,10 @@ const LatestNews = () => {
             <p className='font-semibold'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, quaerat.
             </p>
+            <p className='font-semibold'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, quaerat.
+            </p>
+            
 
         </div>
     );

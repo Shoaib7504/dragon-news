@@ -9,9 +9,18 @@ const CategoryNews = () => {
     const [categoryNews, setCategoryNews] = useState([]);
     // FILTER THE NEWS DATA
     useEffect(() => {
-        const filteredNews = data.filter(news => news.category_id == id)
-        console.log(filteredNews);
-        setCategoryNews(filteredNews);
+        if (id == '0') {
+            setCategoryNews(data);
+            return;
+        } else if (id == '1') {
+            const filteredNews = data.filter(news => news.others.is_today_pick == true);
+            setCategoryNews(filteredNews);
+        } else {
+            const filteredNews = data.filter(news => news.category_id == id)
+
+            setCategoryNews(filteredNews);
+        }
+        // console.log(filteredNews);
 
     }, [data, id])
 

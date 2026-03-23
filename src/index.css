@@ -19,6 +19,6 @@
 
 
 a.active{
-  @apply text-fuchsia-600
+  @apply text-accent
 
 }

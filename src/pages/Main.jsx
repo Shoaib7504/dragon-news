@@ -1,16 +1,13 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
-import AllNews from './AllNews';
+import { Navigate } from 'react-router';
+
 
 const Main = () => {
-    const data = useLoaderData();
-    // console.log(data);
+
 
     return (
         <div>
-            {
-                data.map(news => <AllNews key={news.category_id} news={news}></AllNews>)
-            }
+            <Navigate to='/category/1'></Navigate>
         </div>
     );
 };
