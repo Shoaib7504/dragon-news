@@ -1,10 +1,11 @@
 // import { log } from 'firebase/firestore/pipelines';
 import React, { use } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
-    const { CreateUser, setUser} = use(AuthContext)
+    const { CreateUser, setUser, userUpdate } = use(AuthContext)
+    const navigate=useNavigate();
     const handelRegister = (e) => {
         e.preventDefault();
         // console.log(e.target);
@@ -19,17 +20,26 @@ const Register = () => {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-               console.log(user);
-            setUser(user);
-               
+                //    console.log(user);
+                userUpdate({ displayName: name, photoURL: photo })
+                    .then(() => {
+
+                        setUser({ ...user, displayName: name, photoURL: photo });
+                        navigate("/")
+                    }).catch((error) => {
+                        // An error occurred
+                        console.log(error);
+                     setUser(user)
+                    });
+                  
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-             alert(errorMessage);
-             console.log(errorCode);
-             
-              
+                alert(errorMessage);
+                console.log(errorCode);
+
+
             });
 
 

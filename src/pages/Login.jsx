@@ -1,29 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { use } from 'react';
 
 const Login = () => {
+    const [error, setError] = useState("")
     const { SingIn } = use(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate()
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({ email, password });
-        SingIn(email,password)
+        // console.log({ email, password });
+        SingIn(email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-              console.log(user);
-              
+                // console.log(user);
+                navigate(`${location.state ? location.state : "/"}`)
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
+                // const errorMessage = error.message;
                 console.log(errorCode);
-                alert(errorMessage)
-                
+                // alert(errorMessage)
+                setError(errorCode)
+
             });
     }
     return (
@@ -56,7 +60,8 @@ const Login = () => {
                             <a className="link link-hover">Forgot password?</a>
                         </div>
 
-                        <p className="text-red-400 text-xs"></p>
+                        <p className="text-red-400 text-xs">{error && <p>Wrong Password. Please input Right Password.</p>}</p>
+                        
 
                         <button type="submit" className="btn btn-neutral mt-4">
                             Login
